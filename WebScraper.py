@@ -2,14 +2,15 @@ import requests
 import sys
 
 
-def get_website_contents():
+def get_website_contents(website_address):
     """This function retrieves and returns the contents of the
     website that is passed to it as an argument."""
-    website = requests.get("http://www.darklyrics.com/lyrics/kingdiamond/abigail.html")
+    website = requests.get(website_address)
     try:
         website.raise_for_status()
     except Exception as exception:
         print("Error encountered: %s" % exception)
+        return None
     return website.content
 
 
@@ -46,3 +47,6 @@ if __name__ == "__main__":
     argument = read_arguments(sys.argv)
     if argument is None:
         print_help()
+    else:
+        content = get_website_contents(argument)
+        print(content)
