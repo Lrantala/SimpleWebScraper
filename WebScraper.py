@@ -63,7 +63,7 @@ if __name__ == "__main__":
             else:
                 while True:
                     user_choice = input(
-                        "Give a name where the contents of the website will be saved, or (q)uit.").strip()
+                        "Give a name where the contents of the website will be saved, or (q)uit: ").strip()
                     if user_choice == "Q" or user_choice == "q":
                         break
                     elif user_choice == "":
