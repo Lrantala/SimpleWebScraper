@@ -35,7 +35,7 @@ def read_arguments(arguments):
     elif len(arguments) == 2:
         return arguments[1], None
     else:
-        return None
+        return None, None
 
 
 def print_help():
