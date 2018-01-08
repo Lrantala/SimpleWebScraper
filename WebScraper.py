@@ -1,4 +1,5 @@
 import sys
+from bs4 import BeautifulSoup
 
 import requests
 
@@ -15,10 +16,18 @@ def get_website_contents(website_address):
     return website.content
 
 
+def get_lyrics_between_tags(contents, tags):
+    """This function gets the song texts between certain tags"""
+    soup = BeautifulSoup(contents, 'html.parser')
+    lyrics = soup.find("div", attrs={"class": tags})
+    lyrics_text = lyrics.text.strip()
+    return lyrics_text
+
+
 def write_website_to_file(contents, filename):
     """This function writes the website contents to a file
     as bytes."""
-    write_contents_bytes = bytearray(contents)
+    write_contents_bytes = bytearray(contents, "utf-8")
     try:
         with open(filename, "wb") as file:
             file.write(write_contents_bytes)
@@ -54,7 +63,8 @@ if __name__ == "__main__":
     if address is None:
         print_help()
     else:
-        content = get_website_contents(address)
+        raw_content = get_website_contents(address)
+        content = get_lyrics_between_tags(raw_content, "lyrics")
         if content is None:
             print("Website does not exist")
         else:
