@@ -6,7 +6,7 @@ defer==1.0.6
 language-selector==0.1
 lxml==4.1.1
 pexpect==4.0.1
-Pillow==6.2.2
+Pillow==8.2.0
 ptyprocess==0.5
 pycups==1.9.73
 pycurl==7.43.0
